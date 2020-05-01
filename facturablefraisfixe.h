@@ -11,19 +11,19 @@ class FacturableFraisFixe : public ElementFacturable {
     private:
         //! Variable privee
         /*!
-          Donnee de type int.
+          Donnee de type double.
           Represente le montant en dollars du prix fixe associe a l'objet FacturableFraisFixe
         */
-        int prix_fixe;
+        double prix_fixe;
 
     public:
         //! Constructeur publique
         /*!
           Le Constructeur publique permet de creer un objet de type FacturableFraisFixe
           \param nom Valeur de type std::string representant le nom de l'element
-          \param prix_fixe Valeur de type int representant le prix fixe en dollars de l'element 
+          \param prix_fixe Valeur de type double representant le prix fixe en dollars de l'element 
         */
-        FacturableFraisFixe(const std::string nom, const int prix_fixe);
+        FacturableFraisFixe(const std::string nom, const double prix_fixe);
 
         //! Destructeur publique par defaut
         /*!

@@ -1,13 +1,15 @@
 #include "facture.h"
 
-Facture::Facture() {}
+Facture::Facture() {
+    total = 0;
+}
 
 Facture::~Facture()  {
     std::map<int, ElementFacturable*>::iterator iterateur = conteneur.begin();
 
     while (iterateur != conteneur.end()) {
-        ElementFacturable* element = iterateur->second;
-        delete element;
+        delete iterateur->second;
+        iterateur->second = NULL;
         iterateur++;
     }
     conteneur.clear();
@@ -27,11 +29,9 @@ void Facture::calculerTotal() {
 void Facture::ajouterElementFacturable(ElementFacturable* element) {
     std::string nom = element->getNom();
     int type = getType(nom);
+    std::pair<std::map<int, ElementFacturable*>::iterator, bool> result = conteneur.insert(std::pair<int, ElementFacturable*>(type, element));
 
-    if (conteneur.find(type) == conteneur.end()) {
-        conteneur.insert(std::pair<int, ElementFacturable*>(type, element));
-    }
-    else {
+    if (result.second == false) {
         throw FacturableAlreadyAddedException(nom);
     }
 }
@@ -68,4 +68,13 @@ int Facture::getType(const std::string nom) const {
 
 double Facture::getTotal() const {
     return total;
+}
+
+void Facture::forceAjouterElementFacturable(ElementFacturable* element) {
+    std::string nom = element->getNom();
+    int type = getType(nom);
+    ElementFacturable* old = conteneur[type];
+    std::cout << "\n ***BONUS***  REMPLACEMENT DE " + nom + " DANS LE CONTENEUR \n";
+    delete old;
+    conteneur[type] = element;
 }

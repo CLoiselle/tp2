@@ -12,10 +12,10 @@ class FacturableParUnite : public ElementFacturable {
     private:
         //! Variable privee
         /*!
-          Donnee de type int.
+          Donnee de type double.
           Represente le montant en dollars du prix unitaire associe a l'objet FacturableParUnite
         */
-        int prix_unitaire;
+        double prix_unitaire;
 
         //! Variable privee
         /*!
@@ -29,11 +29,11 @@ class FacturableParUnite : public ElementFacturable {
         /*!
           Le Constructeur publique permet de creer un objet de type FacturableParUnite
           \param nom Valeur de type std::string representant le nom de l'element
-          \param prix_unitaire Valeur de type int representant le prix unitaire en dollars de l'element
+          \param prix_unitaire Valeur de type double representant le prix unitaire en dollars de l'element
           \param quantite Valeur de type std::string representant la quantite de l'element a facturer
           \throws FacturableInvalidQuantityException si la quantite est inferieure ou egale a zero
         */
-        FacturableParUnite(const std::string nom, const int prix_unitaire, const int quantite);
+        FacturableParUnite(const std::string nom, const double prix_unitaire, const int quantite);
 
         //! Destructeur publique par defaut
         /*!

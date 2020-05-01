@@ -1,9 +1,8 @@
 #include "facturableparunite.h"
 
-FacturableParUnite::FacturableParUnite(const std::string nom, const int prix_unitaire, const int quantite) : ElementFacturable(nom) {
+FacturableParUnite::FacturableParUnite(const std::string nom, const double prix_unitaire, const int quantite) : ElementFacturable(nom) {
 
-    if (quantite <= 0) 
-    {
+    if (quantite <= 0) {
         throw FacturableInvalidQuantityException(nom);
     }
 

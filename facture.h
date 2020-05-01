@@ -72,6 +72,13 @@ class Facture {
           \return Donnee de type double representant le montant en dollars total de la Facture
         */
         double getTotal() const;
+
+        //! Methode publique
+        /*!
+          Cette methode force le remplacement d'un pointeur vers un element Facturable au conteneur.
+          Supprime l'ancien element
+        */
+        void forceAjouterElementFacturable(ElementFacturable* element);
 };
 #endif //__FACTURE_H__
 

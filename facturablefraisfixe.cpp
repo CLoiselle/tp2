@@ -1,6 +1,6 @@
 #include "facturablefraisfixe.h"
 
-FacturableFraisFixe::FacturableFraisFixe(const std::string nom, const int prix_fixe) : ElementFacturable(nom) {
+FacturableFraisFixe::FacturableFraisFixe(const std::string nom, const double prix_fixe) : ElementFacturable(nom) {
     this->prix_fixe = prix_fixe;
 }
 

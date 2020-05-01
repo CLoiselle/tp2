@@ -18,12 +18,10 @@ void MenusInteractionFacture::afficherMenuRepas() {
 }
 
 void MenusInteractionFacture::menuNuitees(Facture* facture) {
-    int nbNuitees;
-    FacturableParUnite* nuitee;
+    int nbNuitees = lireChoix(afficherMenuNuitee);
+    FacturableParUnite* nuitee = new FacturableParUnite("Nuitees", 100, nbNuitees);
 
     try {
-        nbNuitees = lireChoix(afficherMenuNuitee);
-        nuitee = new FacturableParUnite("Nuitees", 100, nbNuitees);
         facture->ajouterElementFacturable(nuitee);
     } 
     catch (FacturableInvalidQuantityException& e) {
@@ -31,16 +29,15 @@ void MenusInteractionFacture::menuNuitees(Facture* facture) {
     } 
     catch (FacturableAlreadyAddedException& e) {
         std::cout << e.what();
+        facture->forceAjouterElementFacturable(nuitee);
     }
 }
 
 void MenusInteractionFacture::menuRepas(Facture* facture) {
-    int nbRepas;
-    FacturableParUnite* repas;
+    int nbRepas = lireChoix(afficherMenuRepas);
+    FacturableParUnite* repas = new FacturableParUnite("Repas", 20, nbRepas);
 
     try {
-        nbRepas = lireChoix(afficherMenuRepas);
-        repas = new FacturableParUnite("Repas", 20, nbRepas);
         facture->ajouterElementFacturable(repas);
     }
     catch (FacturableInvalidQuantityException& e) {
@@ -48,25 +45,31 @@ void MenusInteractionFacture::menuRepas(Facture* facture) {
     }
     catch (FacturableAlreadyAddedException& e) {
         std::cout << e.what();
+        facture->forceAjouterElementFacturable(repas);
     }
 }
 
 void MenusInteractionFacture::menuSpa(Facture* facture) {
-    try {
+    ElementFacturable* element = new FacturableFraisFixe("Spa", 75);
 
-        facture->ajouterElementFacturable(new FacturableFraisFixe("Spa", 75));
+    try {
+        facture->ajouterElementFacturable(element);
     }
     catch (FacturableAlreadyAddedException& e) {
         std::cout << e.what();
+        facture->forceAjouterElementFacturable(element);
     }
 }
 
 void MenusInteractionFacture::menuGym(Facture* facture) {
+    ElementFacturable* element = new FacturableFraisFixe("Gym", 50);
+
     try {
-        facture->ajouterElementFacturable(new FacturableFraisFixe("Gym", 50));
+        facture->ajouterElementFacturable(element);
     }
     catch (FacturableAlreadyAddedException& e) {
         std::cout << e.what();
+        facture->forceAjouterElementFacturable(element);
     }
 }
 
